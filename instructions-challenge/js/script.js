@@ -31,6 +31,7 @@ function Sun(){
 }
 
 function tree(){
+
     push();
     fill(0, 200, 0);
     circle(300, 300, 30);
@@ -50,4 +51,11 @@ function tree(){
     fill(0, 230, 0);
     circle(280, 270, 20);
     pop();
+
+    push();
+    // fill("brown");
+    fill(240,130,20);
+    rect(300,270,20,100);
+    pop();
+    
 }
