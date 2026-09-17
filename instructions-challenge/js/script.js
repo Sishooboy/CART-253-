@@ -45,4 +45,9 @@ function tree(){
     fill(0, 190, 0);
     circle(300, 250, 60);
     pop();
+
+    push();
+    fill(0, 230, 0);
+    circle(280, 270, 20);
+    pop();
 }
