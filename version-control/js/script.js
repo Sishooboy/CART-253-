@@ -10,14 +10,11 @@ function setup() {
 
 function draw() {
     background(173, 216, 230);
-
-
 }
 
 
 function waves() {
-
-  rotateY(frameCount * 0.01);
+  rotateY(frameCount * 0.02);
 
   // Draw the triangle.
   triangle(-20, 25, 8, -30, 36, 25);
