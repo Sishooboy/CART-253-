@@ -1,3 +1,4 @@
+// Abstract squares
 "use strict";
 
 function setup() {

@@ -1,4 +1,5 @@
 
+// Robot prototype
 "use strict";
 
 function setup() {

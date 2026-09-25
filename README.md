@@ -9,7 +9,7 @@ this will be my CART 253 project showcase website!Hope you like it!!!! (Odyssy i
 - [Reflective Journal](journal.md)
 - [My GitHub profile](https://github.com/Sishooboy)
 
-## Prototypes
+## Prototyping: Instructions
 
 ### Robot
 
