@@ -11,4 +11,23 @@ this will be my CART 253 project showcase website!Hope you like it!!!! (Odyssy i
 
 ## Prototypes
 
-Prototypes will be added here as the course goes on.
+### Robot
+
+![Robot prototype](images/ss_robot.png)
+
+- [Run the prototype](https://sishooboy.github.io/CART-253-/instructions-prototypes/robot/)
+- [View the code](instructions-prototypes/robot/sketch.js)
+
+### Moses and the Sea
+
+![Moses and the sea prototype](images/ss_moses-sea.png)
+
+- [Run the prototype](https://sishooboy.github.io/CART-253-/instructions-prototypes/moses-sea/)
+- [View the code](instructions-prototypes/moses-sea/sketch.js)
+
+### Abstract Squares
+
+![Abstract squares prototype](images/ss_abstractsquares.png)
+
+- [Run the prototype](https://sishooboy.github.io/CART-253-/instructions-prototypes/abstractsquares/)
+- [View the code](instructions-prototypes/abstractsquares/sketch.js)
