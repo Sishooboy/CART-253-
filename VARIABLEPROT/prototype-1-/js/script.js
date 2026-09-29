@@ -1,24 +1,26 @@
-/**
- * Title of Project
- * Author Name
- * 
- * HOW EMBARRASSING! I HAVE NO DESCRIPTION OF MY PROJECT!
- * PLEASE REMOVE A GRADE FROM MY WORK IF IT'S GRADED!
- */
+//MORNING BELL, I JUST SAW A SONG CALLED THIS WAY AND I THOUGHT IT WAS A GOOD NAME FOR THIS PROJECT. I HOPE YOU ENJOY IT!
+let sky = {
+    r: 10,
+    g: 20,
+    b: 40
+}
 
-"use strict";
-
-/**
- * OH LOOK I DIDN'T DESCRIBE SETUP!!
-*/
 function setup() {
+    createCanvas(400, 400);
 
 }
 
 
-/**
- * OOPS I DIDN'T DESCRIBE WHAT MY DRAW DOES!
-*/
-function draw() {
 
+function draw() {
+    background(sky.r, sky.g, sky.b);
+    if (sky.b < 235) {
+        sky.b += 0.5;
+        if (sky.g < 205) {
+            sky.g += 0.5;
+        }
+        if (sky.r < 135) {
+            sky.r += 0.5;
+        }
+    }
 }
