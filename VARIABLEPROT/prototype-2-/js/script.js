@@ -61,7 +61,7 @@ function drawBird() {
         noStroke();
         fill(bird.fill.r, bird.fill.g, bird.fill.b);
         circle(bird.xbody, bird.ybody, bird.radiusbody);
-        /*if (sky.b > 120) {
+        if (sky.b > 120) {
             if (bird.xhead > 75) {
                 bird.xhead -= 2;
                 bird.mouth.x1 -= 4.7
@@ -69,7 +69,7 @@ function drawBird() {
                 bird.mouth.x3 -= 2.5
                 bird.mouth.x4 -= 3
             }
-        }*/
+        }
 
     }
     function drawhead() {
