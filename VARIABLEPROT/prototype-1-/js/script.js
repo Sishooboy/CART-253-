@@ -1,10 +1,13 @@
-//THE BIRD FAM SHOWS A MOTHER BIRD WITH HER BABY BIRD TRYING TO FOLLOW HER, BUT HE IS A LITTLE MESSY AS YOU CAN SEE.
+//THE BIRD FAM SHOWS A MOTHER BIRD WITH HER BABY BIRD TRYING TO FOLLOW HER, BUT HE ISN'T THAT GOOD OF A FLYEE AS YOU CAN SEE.
+//SKY SHOWING MORNING TIME
 let sky = {
     r: 10,
     g: 20,
     b: 40
 }
+//CHILD BIRD
 let cbird = {
+    //THESE COORDINATES WILL BE USED FOR THE POSITION OF OUR BIRD
     x1: -110,
     y1: 150,
     x2: -90,
@@ -14,6 +17,8 @@ let cbird = {
     x4: -100,
     y4: 190,
     speed: 0.1,
+
+    //THESE COORDINATES WILL BE USED FOR THE FLAPPING OF THE WINGS
     wing1: {
         x: -110,
         y: 150
@@ -30,6 +35,7 @@ let cbird = {
         b: 0
     }
 };
+//MOTHER BIRD I COPIED FROM MY VARIABLE CHALLENGE
 let bird = {
     x1: -100,
     y1: 100,
@@ -78,13 +84,13 @@ function drawBird() {
     quad(bird.x1, bird.y1, bird.x4, bird.y4, bird.x2, bird.y2, bird.x3, bird.y3);
 
 
-    if (bird.x1 < 500) {
+    if (bird.x1 < 500) {//POSITION OF THE BIRD MOVING ACROSS THE SCREEN
         bird.x1 += bird.speed;
         bird.x2 += bird.speed;
         bird.x3 += bird.speed;
         bird.x4 += bird.speed;
         bird.speed += 0.01;
-        let x = bird.x1;
+        let x = bird.x1;//FLAPPING WINGS
         bird.y1 = 30 * sin(x * 0.1) + 100;
         bird.y2 = 30 * sin(x * 0.1) + 100;
     }
@@ -102,11 +108,11 @@ function drawCBird() {
         cbird.x3 += cbird.speed;
         cbird.x4 += cbird.speed;
         cbird.speed += 0.01;
-        let y = cbird.x1;
+        let y = cbird.x1; // HIS WINGS FLAPPING 
         cbird.wing1.y = 10 * sin(y * 0.1) + 0;
         cbird.wing2.y = 10 * sin(y * 0.1) + 0;
 
-        let x = cbird.x1;
+        let x = cbird.x1;//POSITION OF THE child BIRD MOVING ACROSS THE SCREEN
         cbird.y1 = 100 * sin(x * 0.03) + 120 + cbird.wing1.y;
         cbird.y2 = 100 * sin(x * 0.03) + 120 + cbird.wing2.y;
         cbird.y3 = 100 * sin(x * 0.03) + 135;
