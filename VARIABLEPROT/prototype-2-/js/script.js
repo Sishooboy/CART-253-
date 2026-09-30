@@ -76,8 +76,8 @@ function drawBird() {
         noStroke();
         fill(bird.fill.r, bird.fill.g + 20, bird.fill.b - 20);
         circle(bird.xhead, bird.yhead, bird.radiushead);
-        /*fill(bird.fill.r, bird.fill.g - 20, bird.fill.b + 20);
-        quad(bird.mouth.x1, bird.mouth.y1, bird.mouth.x2, bird.mouth.y2, bird.mouth.x3, bird.mouth.y3, bird.mouth.x4, bird.mouth.y4);*/
+        fill(bird.fill.r, bird.fill.g - 20, bird.fill.b + 20);
+        quad(bird.mouth.x1, bird.mouth.y1, bird.mouth.x2, bird.mouth.y2, bird.mouth.x3, bird.mouth.y3, bird.mouth.x4, bird.mouth.y4);
     }
     drawbody()
     drawhead()
