@@ -5,6 +5,25 @@ let sky = {
     b: 40
 }
 
+let bird = {
+    x1: -100,
+    y1: 150,
+    x2: 0,
+    y2: 150,
+    x3: -50,
+    y3: 200,
+    x4: -50,
+    y4: 180,
+    speed: 0.1,
+
+    // Colour
+    fill: {
+        r: 255,
+        g: 255,
+        b: 0
+    }
+};
+
 function setup() {
     createCanvas(400, 400);
 
@@ -23,4 +42,9 @@ function draw() {
             sky.r += 0.5;
         }
     }
+    drawBird();
+}
+function drawBird() {
+    fill(bird.fill.r, bird.fill.g, bird.fill.b);
+    quad(bird.x1, bird.y1, bird.x2, bird.y2, bird.x3, bird.y3, bird.x4, bird.y4);
 }
