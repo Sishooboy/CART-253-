@@ -55,6 +55,7 @@ let bird = {
         y: 180,
         rad: 30,
         op: 255,
+        growthspeed: 8,
     }
 
 
@@ -103,10 +104,19 @@ function phoenix() {
     head()
     wings()
 }
-/*function aura() {
+function aura() {
     noStroke()
     fill(255, 0, 0, bird.aura.op)
     circle(bird.aura.x, bird.aura.y, bird.aura.rad)
-    if (bird.aura)
+    if (bird.aura.rad < 500) {
+        bird.aura.rad += bird.aura.growthspeed
+        bird.aura.op -= bird.aura.growthspeed / 2
+        bird.aura.growthspeed -= 0.07
 
-}*/
+        if (bird.aura.rad > 450) {
+            bird.aura.rad = 30
+            bird.aura.op = 255
+            bird.aura.growthspeed = 8
+        }
+    }
+}
