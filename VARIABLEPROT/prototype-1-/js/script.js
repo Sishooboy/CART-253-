@@ -45,6 +45,22 @@ function draw() {
     drawBird();
 }
 function drawBird() {
+
+    noStroke();
     fill(bird.fill.r, bird.fill.g, bird.fill.b);
-    quad(bird.x1, bird.y1, bird.x2, bird.y2, bird.x3, bird.y3, bird.x4, bird.y4);
+
+    quad(bird.x1, bird.y1, bird.x4, bird.y4, bird.x2, bird.y2, bird.x3, bird.y3);
+
+
+    if (bird.x1 < 500) {
+        bird.x1 += bird.speed;
+        bird.x2 += bird.speed;
+        bird.x3 += bird.speed;
+        bird.x4 += bird.speed;
+        bird.speed += 0.03;
+        let x = bird.x1;
+        bird.y1 = 30 * sin(x * 0.1) + 150;
+        bird.y2 = 30 * sin(x * 0.1) + 150;
+    }
+
 }
