@@ -1,14 +1,13 @@
-//THE BIRD FAM SHOWS A MOTHER BIRD WITH HER BABY BIRD TRYING TO FOLLOW HER, BUT HE ISN'T THAT GOOD OF A FLYEE AS YOU CAN SEE.
+//This shows a phoenix pulsating.
 
-
-//SKY SHOWING MORNING TIME
+//just background
 let sky = {
     r: 10,
     g: 10,
     b: 10
 }
 
-let bird = {
+let bird = {//basically everything related to phoenix
     body: {
         x1: 120,
         y1: 120,
@@ -71,7 +70,7 @@ function draw() {
 
 
 }
-function phoenix() {
+function phoenix() {//constructing the shape
 
 
     function birdbody() {
@@ -104,7 +103,7 @@ function phoenix() {
     head()
     wings()
 }
-function aura() {
+function aura() {//making the aura pulsate 
     noStroke()
     fill(255, 0, 0, bird.aura.op)
     circle(bird.aura.x, bird.aura.y, bird.aura.rad)

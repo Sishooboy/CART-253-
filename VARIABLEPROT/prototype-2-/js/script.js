@@ -1,14 +1,11 @@
-//THE BIRD FAM SHOWS A MOTHER BIRD WITH HER BABY BIRD TRYING TO FOLLOW HER, BUT HE ISN'T THAT GOOD OF A FLYEE AS YOU CAN SEE.
-
-
-//SKY SHOWING MORNING TIME
+//basic night to morning sky, obviously starting at night time 
 let sky = {
     r: 10,
     g: 20,
     b: 40
 }
 
-let bird = {
+let bird = {//bird attributes
     xbody: 130,
     ybody: 230,
     radiusbody: 130,
@@ -35,7 +32,7 @@ let bird = {
 function setup() {
     createCanvas(400, 400);
 }
-function draw() {
+function draw() {//getting day
     background(sky.r, sky.g, sky.b);
     if (sky.b < 235) {
         sky.b += 0.7;
@@ -49,14 +46,14 @@ function draw() {
     drawBranch();
     drawBird();
 }
-function drawBranch() {
-    fill(101, 67, 33);   // brown color
-    stroke(101, 67, 33);   // brown line
-    strokeWeight(5);      // thickness of the line
+function drawBranch() {//basic branch our bird will be sitting on 
+    fill(101, 67, 33);
+    stroke(101, 67, 33);
+    strokeWeight(5);
     triangle(190, 290, 150, 290, 380, 320);
     triangle(-50, 300, 350, 270, -50, 320);
 }
-function drawBird() {
+function drawBird() {//our bird
     function drawbody() {
         noStroke();
         fill(bird.fill.r, bird.fill.g, bird.fill.b);
@@ -72,7 +69,7 @@ function drawBird() {
         }
 
     }
-    function drawhead() {
+    function drawhead() {//his head horizontal movement
         noStroke();
         fill(bird.fill.r, bird.fill.g + 20, bird.fill.b - 20);
         circle(bird.xhead, bird.yhead, bird.radiushead);

@@ -13,3 +13,4 @@ To be honest I did not expect having this much fun with this. Took a little buit
 At the end I think it safe to say that these designs look good, funny ones may call them, but nonetheless solid, I had a blast doing these and figuring out how to solve problems, how to position things and just creatively just going with the flow of persistent new ideas while working although that was a little tricky to deal with. 
 
 ![Moses and the Sea prototype](images/ss_moses-sea.png)
+

@@ -31,3 +31,20 @@ this will be my CART 253 project showcase website!Hope you like it!!!! (Odyssy i
 
 - [Run the prototype](https://sishooboy.github.io/CART-253-/instructions-prototypes/abstractsquares/)
 - [View the code](instructions-prototypes/abstractsquares/sketch.js)
+
+## Prototyping: Variables
+
+### The Bird Fam
+
+- [Run the prototype](https://sishooboy.github.io/CART-253-/VARIABLEPROT/prototype-1-/)
+- [View the code](VARIABLEPROT/prototype-1-/js/script.js)
+
+### The Bird but He Is Actually a Bird
+
+- [Run the prototype](https://sishooboy.github.io/CART-253-/VARIABLEPROT/prototype-2-/)
+- [View the code](VARIABLEPROT/prototype-2-/js/script.js)
+
+### Phoenix
+
+- [Run the prototype](https://sishooboy.github.io/CART-253-/VARIABLEPROT/prototype-3-/)
+- [View the code](VARIABLEPROT/prototype-3-/js/script.js)
