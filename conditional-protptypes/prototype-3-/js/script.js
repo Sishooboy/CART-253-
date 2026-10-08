@@ -17,6 +17,15 @@ function setup() {
 function draw() {
     background(sky.r, sky.g, sky.b);
 
+    let distance = dist(mouseX, mouseY, bird.x, bird.y);
+
+    if (distance < 100) {
+        bird.size = 40;
+    }
+    else {
+        bird.size = 100;
+    }
+
     fill(255);
     textAlign(CENTER);
     textSize(16);
