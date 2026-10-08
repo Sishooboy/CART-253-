@@ -18,18 +18,22 @@ function draw() {
     background(sky.r, sky.g, sky.b);
 
     let distance = dist(mouseX, mouseY, bird.x, bird.y);
+    let message;
 
     if (distance < 100) {
         bird.size = 40;
+        message = "NEVER MIND, I'M JUST A CHICKEN";
     }
     else {
         bird.size = 100;
+        message = "I AM THE MIGHTY PHOENIX!";
     }
 
     fill(255);
     textAlign(CENTER);
     textSize(16);
     text("Move the mouse toward the brave phoenix", 200, 30);
+    text(message, 200, 350);
 
     drawBird();
 }
