@@ -6,14 +6,8 @@ let sky = {
 let poke1;
 let poke2;
 let poke3;
-let bird = {
-    x1: 200,
-    y1: 200,
+let evolution = 1;
 
-}
-function preload() {
-
-}
 async function setup() {
     createCanvas(800, 600);
     imageMode(CENTER);
@@ -24,5 +18,23 @@ async function setup() {
 
 function draw() {
     background(sky.r, sky.g, sky.b);
-    image(poke1, 400, 300, 200, 200);
+
+    if (evolution == 1) {
+        image(poke1, 400, 300, 200, 200);
+    }
+    if (evolution == 2) {
+        image(poke2, 400, 300, 200, 200);
+    }
+    if (evolution == 3) {
+        image(poke3, 400, 300, 200, 200);
+    }
+}
+
+function mousePressed() {
+    if (evolution < 4) {
+        evolution = evolution + 1;
+    }
+    if (evolution == 4) {
+        evolution = 1;
+    }
 }
