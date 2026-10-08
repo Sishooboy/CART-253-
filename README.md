@@ -54,3 +54,28 @@ this will be my CART 253 project showcase website!Hope you like it!!!! (Odyssy i
 
 - [Run the prototype](https://sishooboy.github.io/CART-253-/VARIABLEPROT/prototype-3-/)
 - [View the code](VARIABLEPROT/prototype-3-/js/script.js)
+
+## Prototyping: Conditionals
+
+### The Bird Hunter
+
+![The Bird Hunter prototype](images/birdhunter.png)
+
+- [Run the prototype](https://sishooboy.github.io/CART-253-/conditional-protptypes/prototype-1-/)
+- [View the code](conditional-protptypes/prototype-1-/js/script.js)
+
+### Pokemon Evolution
+
+![Pokemon Evolution prototype](images/birdpokemon.png)
+
+- [Run the prototype](https://sishooboy.github.io/CART-253-/conditional-protptypes/prototype-2-/)
+- [View the code](conditional-protptypes/prototype-2-/js/script.js)
+
+### The Brave Phoenix
+
+![The Brave Phoenix prototype](images/BRAVEPHOENIX.png)
+
+- [Run the prototype](https://sishooboy.github.io/CART-253-/conditional-protptypes/prototype-3-/)
+- [View the code](conditional-protptypes/prototype-3-/js/script.js)
+
+[Read my journal entry for this assignment](journal.md#conditionals-assignment)
