@@ -4,14 +4,14 @@ let sky = {
     b: 230
 };
 let bird = {
-    x1: 200,
-    y1: 200,
-    x2: 180,
-    y2: 180,
-    x3: 200,
-    y3: 190,
-    x4: 220,
-    y4: 180
+    x1: 0,
+    y1: 0,
+    x2: -20,
+    y2: -20,
+    x3: 0,
+    y3: -10,
+    x4: +20,
+    y4: -20
 };
 let prey = {
     x: 200,
@@ -28,7 +28,7 @@ function draw() {
     background(sky.r, sky.g, sky.b);
     noStroke();
     fill(230, 200, 0);
-    quad(bird.x1, bird.y1, bird.x2, bird.y2, bird.x3, bird.y3, bird.x4, bird.y4);
+    quad(mouseX + bird.x1, mouseY + bird.y1, mouseX + bird.x2, mouseY + bird.y2, mouseX + bird.x3, mouseY + bird.y3, mouseX + bird.x4, mouseY + bird.y4);
     fill(40);
     ellipse(prey.x, prey.y, prey.size);
 }
