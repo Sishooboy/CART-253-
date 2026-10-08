@@ -14,3 +14,8 @@ At the end I think it safe to say that these designs look good, funny ones may c
 
 ![Moses and the Sea prototype](images/ss_moses-sea.png)
 
+## variables assignment
+
+I enjoyed this assignment, it was very fun, althou I don't think it was as fun as the last one, but I enjoyed the whole theme of imagining just birds in different. First making 2 birds a mother bird and her baby bird awkwardly following her, it was challenging to find the solution to how I was going to make the whole bird move with sinus and them make his wings flap with sinus also just on a way smaller scale, and I thought I was very clever finding the solution to this by adding the y-coordinates together which now sounds very basic and stupid but it had to be very well thought of. The second one's hardest challenge was the beak and matching it to the head. But basically I just limited the time in which the beak coordinates moved to the time the head moved, so basically when the head stopped moving so did the beak, and I just matched the speed of each coordinates movement to be able to get the best result possible. The last one is my favorite although it is the most basic, just a phoenix pulsating aura. The aura's growth speed is decreasing, and also matched the decreasing growth speed to the opacity to give a nicer effect and yeah that's all.
+
+![Phoenix](images/Phoenix.png)
