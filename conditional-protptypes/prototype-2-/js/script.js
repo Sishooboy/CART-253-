@@ -6,11 +6,13 @@ let sky = {
 let poke1;
 let poke2;
 let poke3;
+// Current evolution
 let evolution = 1;
 
 async function setup() {
     createCanvas(800, 600);
     imageMode(CENTER);
+    // Load images
     poke1 = await loadImage("assets/images/poke1.png");
     poke2 = await loadImage("assets/images/poke2.png");
     poke3 = await loadImage("assets/images/poke3.png");
@@ -31,6 +33,7 @@ function draw() {
 }
 
 function mousePressed() {
+    // Change evolution
     if (evolution < 4) {
         evolution = evolution + 1;
     }
