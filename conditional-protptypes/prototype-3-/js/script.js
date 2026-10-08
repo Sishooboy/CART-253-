@@ -17,9 +17,11 @@ function setup() {
 function draw() {
     background(sky.r, sky.g, sky.b);
 
+    // Distance from the bird
     let distance = dist(mouseX, mouseY, bird.x, bird.y);
     let message;
 
+    // Bird gets scared
     if (distance < 100) {
         bird.size = 40;
         message = "NEVER MIND, I'M JUST A CHICKEN";
@@ -39,6 +41,7 @@ function draw() {
 }
 
 function drawBird() {
+    // Draw the phoenix
     noStroke();
 
     fill(255, 100, 0);
