@@ -40,12 +40,29 @@ function draw() {
         }
     }
 
+    // While he sleeps undisturbed the sky slowly turns into morning
+    if (bird.mood === "asleep") {
+        if (sky.r < 135) {
+            sky.r = sky.r + 0.2;
+        }
+        if (sky.g < 205) {
+            sky.g = sky.g + 0.3;
+        }
+        if (sky.b < 235) {
+            sky.b = sky.b + 0.33;
+        }
+        // Once it is bright enough he wakes up happy
+        else {
+            bird.mood = "happy";
+        }
+    }
+
     drawBranch();
     drawBird();
     drawMessage();
 
     // Only a sleeping bird makes Z z z
-    if (bird.mood !== "furious") {
+    if (bird.mood === "asleep" || bird.mood === "grumpy") {
         drawZzz();
     }
 }
@@ -82,6 +99,11 @@ function drawBird() {
         fill(0);
         circle(eyeX + 2, eyeY, 7);
     }
+    else if (bird.mood === "happy") {
+        // Open eye
+        fill(0);
+        circle(eyeX, eyeY, 10);
+    }
     else {
         // Closed eye
         stroke(0);
@@ -98,6 +120,9 @@ function drawMessage() {
     }
     if (bird.mood === "furious") {
         message = "WHO DARES WAKE ME?!";
+    }
+    if (bird.mood === "happy") {
+        message = "GOOD MORNING!";
     }
 
     noStroke();
@@ -119,11 +144,19 @@ function drawZzz() {
     }
 }
 
+// Puts the sky back to night, so the wait for morning starts over
+function resetSky() {
+    sky.r = 10;
+    sky.g = 20;
+    sky.b = 40;
+}
+
 function mouseMoved() {
     // Moving the mouse annoys him, but he stays asleep
-    if (bird.mood !== "furious") {
+    if (bird.mood === "asleep" || bird.mood === "grumpy") {
         bird.mood = "grumpy";
         moodTimer = 120;
+        resetSky();
     }
 }
 
@@ -131,4 +164,5 @@ function mousePressed() {
     // Clicking wakes him up properly
     bird.mood = "furious";
     moodTimer = 240;
+    resetSky();
 }
