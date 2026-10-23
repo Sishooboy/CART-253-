@@ -10,6 +10,11 @@ let bird = {
     size: 90
 };
 
+let zzz = {
+    x: 270,
+    y: 200
+};
+
 function setup() {
     createCanvas(400, 400);
 }
@@ -18,6 +23,7 @@ function draw() {
     background(sky.r, sky.g, sky.b);
     drawBranch();
     drawBird();
+    drawZzz();
 }
 
 function drawBranch() {
@@ -50,4 +56,17 @@ function drawBird() {
         bird.x + bird.size / 6 + 8, bird.y - bird.size / 6
     );
     pop();
+}
+
+function drawZzz() {
+    noStroke();
+    fill(255);
+    textSize(24);
+    text("Z z z", zzz.x, zzz.y);
+
+    // Floats up, then starts again from the bird
+    zzz.y = zzz.y - 0.5;
+    if (zzz.y < 120) {
+        zzz.y = 200;
+    }
 }
