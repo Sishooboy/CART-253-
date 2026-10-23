@@ -1,9 +1,28 @@
+/**
+ * Sleepy Bird
+ * Charbel Dagher
+ *
+ * A bird is asleep on a branch in the middle of the night.
+ * If you move the mouse he grumbles in his sleep, and if you click
+ * he wakes up furious and the sky turns red.
+ * If you are patient and leave him alone, the sky slowly turns into
+ * morning and he wakes up happy all on his own.
+ *
+ * Uses:
+ * - mouseMoved() to disturb him
+ * - mousePressed() to wake him up
+ */
+
+"use strict";
+
+// The colour of the sky (it starts as night and slowly turns into morning)
 let sky = {
     r: 10,
     g: 20,
     b: 40
 };
 
+// The bird, and his mood: "asleep", "grumpy", "furious" or "happy"
 let bird = {
     x: 200,
     y: 250,
@@ -11,6 +30,7 @@ let bird = {
     mood: "asleep"
 };
 
+// The floating Z z z above his head
 let zzz = {
     x: 270,
     y: 200
@@ -19,10 +39,16 @@ let zzz = {
 // Counts down in frames until he calms down and goes back to sleep
 let moodTimer = 0;
 
+/**
+ * Creates the canvas
+ */
 function setup() {
     createCanvas(400, 400);
 }
 
+/**
+ * Updates his mood and the sky, then draws everything
+ */
 function draw() {
     // A furious bird turns the whole sky red
     if (bird.mood === "furious") {
@@ -67,12 +93,19 @@ function draw() {
     }
 }
 
+/**
+ * Draws the branch he sleeps on
+ */
 function drawBranch() {
     noStroke();
     fill(100, 60, 20);
     rect(40, 290, 320, 16, 8);
 }
 
+/**
+ * Draws the bird. The body and beak are always the same,
+ * only the eye changes with his mood.
+ */
 function drawBird() {
     push();
     noStroke();
@@ -89,6 +122,7 @@ function drawBird() {
         bird.x + bird.size / 2, bird.y + bird.size / 10
     );
 
+    // Where the eye goes
     let eyeX = bird.x + bird.size / 6;
     let eyeY = bird.y - bird.size / 6;
 
@@ -113,6 +147,9 @@ function drawBird() {
     pop();
 }
 
+/**
+ * Writes what the bird is saying at the top of the canvas
+ */
 function drawMessage() {
     let message = "shhh... he's sleeping";
     if (bird.mood === "grumpy") {
@@ -131,6 +168,9 @@ function drawMessage() {
     text(message, 100, 60);
 }
 
+/**
+ * Draws the Z z z floating up from the bird
+ */
 function drawZzz() {
     noStroke();
     fill(255);
@@ -144,13 +184,18 @@ function drawZzz() {
     }
 }
 
-// Puts the sky back to night, so the wait for morning starts over
+/**
+ * Puts the sky back to night, so the wait for morning starts over
+ */
 function resetSky() {
     sky.r = 10;
     sky.g = 20;
     sky.b = 40;
 }
 
+/**
+ * Moving the mouse makes him grumpy
+ */
 function mouseMoved() {
     // Moving the mouse annoys him, but he stays asleep
     if (bird.mood === "asleep" || bird.mood === "grumpy") {
@@ -160,6 +205,9 @@ function mouseMoved() {
     }
 }
 
+/**
+ * Clicking makes him furious
+ */
 function mousePressed() {
     // Clicking wakes him up properly
     bird.mood = "furious";
