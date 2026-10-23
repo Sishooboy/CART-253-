@@ -27,3 +27,11 @@ I had a lot of fun with this assignment because conditionals made everything fee
 Overall I think I understand conditionals much better now, especially how they can check distance, mouse clicks and the value of variables to make different things happen. These prototypes are all pretty basic but they each do something different and I think they turned out funny.
 
 ![The Brave Phoenix](images/BRAVEPHOENIX.png)
+
+## events assignment
+
+I'm handing this one in late because I started it late, so I did it in the p5 editor, prepared the code there and then pasted it into my repository. I used the same bird model for all three prototypes so I could focus on the events instead of redrawing a bird every time. The first one is a hungry bird that you feed with the space bar, he gets bigger until he is too fat to fly and sinks, and if you stop he shrinks back. The second is a sleepy bird, moving the mouse makes him grumpy, a click makes him furious and turns the sky red, but if you leave him alone the sky turns into morning and he wakes up happy. The last one you can pick up and drag, he flaps in a panic, falls when you let go, gets tickled by the scroll wheel and squawks if you double click him.
+
+I didn't like working with millis() because you have to save a time and subtract it from the current time every frame, which was hard to picture and easy to get wrong. I still used it for the hungry bird but for the others I used a counter that goes down every frame, which is way easier to read. What I learned is that events only change variables and then the same if statements from last week decide what happens. I hope people feel a little guilty for dropping the bird, or proud for being patient with the sleepy one.
+
+![Sleepy Bird](images/sleepybird.png)

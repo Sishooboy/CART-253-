@@ -79,3 +79,28 @@ this will be my CART 253 project showcase website!Hope you like it!!!! (Odyssy i
 - [View the code](conditional-protptypes/prototype-3-/js/script.js)
 
 [Read my journal entry for this assignment](journal.md#conditionals-assignment)
+
+## Prototyping: Events
+
+### Hungry Bird
+
+![Hungry Bird prototype](images/hungrybird.png)
+
+- [Run the prototype](https://sishooboy.github.io/CART-253-/eventprot/prototype-1-/)
+- [View the code](eventprot/prototype-1-/js/script.js)
+
+### Sleepy Bird
+
+![Sleepy Bird prototype](images/sleepybird.png)
+
+- [Run the prototype](https://sishooboy.github.io/CART-253-/eventprot/prototype-2-/)
+- [View the code](eventprot/prototype-2-/js/script.js)
+
+### Pick Up the Bird
+
+![Pick Up the Bird prototype](images/pickupbird.png)
+
+- [Run the prototype](https://sishooboy.github.io/CART-253-/eventprot/prototype-3-/)
+- [View the code](eventprot/prototype-3-/js/script.js)
+
+[Read my journal entry for this assignment](journal.md#events-assignment)
