@@ -8,7 +8,8 @@ let bird = {
     x: 200,
     y: 320,
     size: 80,
-    flap: 0
+    flap: 0,
+    held: false
 };
 
 function setup() {
@@ -17,6 +18,15 @@ function setup() {
 
 function draw() {
     background(sky.r, sky.g, sky.b);
+
+    // While he is held his wing flaps frantically
+    if (bird.held) {
+        bird.flap = random(-25, 25);
+    }
+    else {
+        bird.flap = 0;
+    }
+
     drawGround();
     drawBird();
 }
@@ -53,4 +63,24 @@ function drawBird() {
     // Eye
     fill(0);
     circle(bird.x + bird.size / 6, bird.y - bird.size / 6, bird.size / 10);
+}
+
+function mousePressed() {
+    // Grab the bird if the mouse is on him
+    let d = dist(mouseX, mouseY, bird.x, bird.y);
+    if (d < bird.size / 2) {
+        bird.held = true;
+    }
+}
+
+function mouseDragged() {
+    // The bird follows the mouse while he is held
+    if (bird.held) {
+        bird.x = constrain(mouseX, 40, 360);
+        bird.y = constrain(mouseY, 40, 320);
+    }
+}
+
+function mouseReleased() {
+    bird.held = false;
 }
