@@ -7,7 +7,8 @@ let sky = {
 let bird = {
     x: 200,
     y: 250,
-    size: 90
+    size: 90,
+    mood: "asleep"
 };
 
 let zzz = {
@@ -15,15 +16,38 @@ let zzz = {
     y: 200
 };
 
+// Counts down in frames until he calms down and goes back to sleep
+let moodTimer = 0;
+
 function setup() {
     createCanvas(400, 400);
 }
 
 function draw() {
-    background(sky.r, sky.g, sky.b);
+    // A furious bird turns the whole sky red
+    if (bird.mood === "furious") {
+        background(90, 10, 10);
+    }
+    else {
+        background(sky.r, sky.g, sky.b);
+    }
+
+    // He calms down once the timer runs out
+    if (moodTimer > 0) {
+        moodTimer = moodTimer - 1;
+        if (moodTimer === 0) {
+            bird.mood = "asleep";
+        }
+    }
+
     drawBranch();
     drawBird();
-    drawZzz();
+    drawMessage();
+
+    // Only a sleeping bird makes Z z z
+    if (bird.mood !== "furious") {
+        drawZzz();
+    }
 }
 
 function drawBranch() {
@@ -48,14 +72,38 @@ function drawBird() {
         bird.x + bird.size / 2, bird.y + bird.size / 10
     );
 
-    // Closed eye
-    stroke(0);
-    strokeWeight(3);
-    line(
-        bird.x + bird.size / 6 - 8, bird.y - bird.size / 6,
-        bird.x + bird.size / 6 + 8, bird.y - bird.size / 6
-    );
+    let eyeX = bird.x + bird.size / 6;
+    let eyeY = bird.y - bird.size / 6;
+
+    if (bird.mood === "furious") {
+        // Wide open eye
+        fill(255);
+        circle(eyeX, eyeY, 16);
+        fill(0);
+        circle(eyeX + 2, eyeY, 7);
+    }
+    else {
+        // Closed eye
+        stroke(0);
+        strokeWeight(3);
+        line(eyeX - 8, eyeY, eyeX + 8, eyeY);
+    }
     pop();
+}
+
+function drawMessage() {
+    let message = "shhh... he's sleeping";
+    if (bird.mood === "grumpy") {
+        message = "mmmgrrr...";
+    }
+    if (bird.mood === "furious") {
+        message = "WHO DARES WAKE ME?!";
+    }
+
+    noStroke();
+    fill(255);
+    textSize(20);
+    text(message, 100, 60);
 }
 
 function drawZzz() {
@@ -69,4 +117,18 @@ function drawZzz() {
     if (zzz.y < 120) {
         zzz.y = 200;
     }
+}
+
+function mouseMoved() {
+    // Moving the mouse annoys him, but he stays asleep
+    if (bird.mood !== "furious") {
+        bird.mood = "grumpy";
+        moodTimer = 120;
+    }
+}
+
+function mousePressed() {
+    // Clicking wakes him up properly
+    bird.mood = "furious";
+    moodTimer = 240;
 }
