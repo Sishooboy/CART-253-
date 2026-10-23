@@ -10,6 +10,8 @@ let bird = {
     size: 60
 };
 
+let message = "FEED ME (press space)";
+
 function setup() {
     createCanvas(400, 400);
 }
@@ -17,6 +19,11 @@ function setup() {
 function draw() {
     background(sky.r, sky.g, sky.b);
     drawBird();
+
+    fill(255);
+    textAlign(CENTER);
+    textSize(16);
+    text(message, 200, 40);
 }
 
 function drawBird() {
@@ -37,4 +44,14 @@ function drawBird() {
     // Eye
     fill(0);
     circle(bird.x + bird.size / 6, bird.y - bird.size / 6, bird.size / 10);
+}
+
+function keyPressed() {
+    // Space feeds the bird, so he gets bigger
+    if (key === " ") {
+        bird.size = bird.size + 10;
+        message = "NOM NOM NOM";
+    }
+    // Stops the page from scrolling when space is pressed
+    return false;
 }
