@@ -7,10 +7,12 @@ let sky = {
 let bird = {
     x: 200,
     y: 200,
-    size: 60
+    size: 60,
+    minSize: 60
 };
 
 let message = "FEED ME (press space)";
+let lastFed = 0;
 
 function setup() {
     createCanvas(400, 400);
@@ -18,6 +20,13 @@ function setup() {
 
 function draw() {
     background(sky.r, sky.g, sky.b);
+
+    // If nobody has fed him for 3 seconds he starts to shrink
+    if (millis() - lastFed > 3000 && bird.size > bird.minSize) {
+        bird.size = bird.size - 0.5;
+        message = "I'M STARVING...";
+    }
+
     drawBird();
 
     fill(255);
@@ -50,6 +59,7 @@ function keyPressed() {
     // Space feeds the bird, so he gets bigger
     if (key === " ") {
         bird.size = bird.size + 10;
+        lastFed = millis();
         message = "NOM NOM NOM";
     }
     // Stops the page from scrolling when space is pressed
