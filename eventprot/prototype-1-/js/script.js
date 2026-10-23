@@ -8,7 +8,9 @@ let bird = {
     x: 200,
     y: 200,
     size: 60,
-    minSize: 60
+    minSize: 60,
+    maxSize: 220,
+    groundY: 320
 };
 
 let message = "FEED ME (press space)";
@@ -25,6 +27,18 @@ function draw() {
     if (millis() - lastFed > 3000 && bird.size > bird.minSize) {
         bird.size = bird.size - 0.5;
         message = "I'M STARVING...";
+    }
+
+    // Too fat to fly, so he sinks to the ground
+    if (bird.size >= bird.maxSize) {
+        message = "I CAN'T FLY ANYMORE";
+        if (bird.y < bird.groundY) {
+            bird.y = bird.y + 2;
+        }
+    }
+    // Back in the air once he is light enough
+    else if (bird.y > 200) {
+        bird.y = bird.y - 2;
     }
 
     drawBird();
@@ -56,9 +70,9 @@ function drawBird() {
 }
 
 function keyPressed() {
-    // Space feeds the bird, so he gets bigger
+    // Space feeds the bird, so he gets bigger (but not past his max size)
     if (key === " ") {
-        bird.size = bird.size + 10;
+        bird.size = min(bird.size + 10, bird.maxSize);
         lastFed = millis();
         message = "NOM NOM NOM";
     }
