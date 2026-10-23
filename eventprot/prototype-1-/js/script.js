@@ -1,25 +1,52 @@
+/**
+ * Hungry Bird
+ * Charbel Dagher
+ *
+ * A very hungry bird who wants you to mash the space bar.
+ * Every press feeds him and makes him bigger, but if you stop
+ * feeding him for a few seconds he starts to shrink again.
+ * If you feed him too much he gets too fat to fly and sinks.
+ *
+ * Uses:
+ * - keyPressed() to feed the bird
+ * - millis() to know how long it has been since he last ate
+ */
+
+"use strict";
+
+// The colour of the sky
 let sky = {
     r: 173,
     g: 216,
     b: 230
 };
 
+// Everything about the bird
 let bird = {
     x: 200,
     y: 200,
     size: 60,
-    minSize: 60,
-    maxSize: 220,
-    groundY: 320
+    minSize: 60, // He can't get smaller than this
+    maxSize: 220, // He can't get bigger than this
+    groundY: 320 // Where he ends up when he is too fat to fly
 };
 
+// What the bird is currently saying
 let message = "FEED ME (press space)";
+
+// The time (in milliseconds) he was last fed
 let lastFed = 0;
 
+/**
+ * Creates the canvas
+ */
 function setup() {
     createCanvas(400, 400);
 }
 
+/**
+ * Checks on the bird's hunger, then draws him and what he is saying
+ */
 function draw() {
     background(sky.r, sky.g, sky.b);
 
@@ -43,12 +70,17 @@ function draw() {
 
     drawBird();
 
+    // The speech
     fill(255);
     textAlign(CENTER);
     textSize(16);
     text(message, 200, 40);
 }
 
+/**
+ * Draws the bird: a round body, a beak and an eye.
+ * Everything is based on bird.size so he grows and shrinks as one piece.
+ */
 function drawBird() {
     noStroke();
 
@@ -69,6 +101,9 @@ function drawBird() {
     circle(bird.x + bird.size / 6, bird.y - bird.size / 6, bird.size / 10);
 }
 
+/**
+ * Space feeds the bird
+ */
 function keyPressed() {
     // Space feeds the bird, so he gets bigger (but not past his max size)
     if (key === " ") {
