@@ -1,3 +1,26 @@
+/**
+ * Pigeon Problem
+ * Charbel Dagher
+ *
+ * A very serious statue stands in a park. Click anywhere on him and a
+ * pigeon flies over and drops a white splat exactly where you clicked.
+ * Press any key to clean him, and then start again.
+ * Every click calls the same functions again (drawSplat() and
+ * drawBird()), so the more you click, the more times they are used.
+ *
+ * Uses:
+ * - mousePressed() to call drawSplat() and drawBird()
+ * - keyPressed() to call drawScene() and clean the statue
+ * - functions with parameters: drawSplat(x, y, size) and
+ *   drawBird(x, y, size, r, g, b, wing)
+ */
+
+"use strict";
+
+/**
+ * Creates the canvas, sets up the drawing and draws the scene once.
+ * There is no draw() because everything is drawn when you click.
+ */
 function setup() {
     createCanvas(400, 400);
     noStroke();
@@ -5,6 +28,10 @@ function setup() {
     drawScene();
 }
 
+/**
+ * Draws the park and the statue. It draws over everything, so calling
+ * it again cleans off all the splats and the pigeons.
+ */
 function drawScene() {
     // Sky
     background(150, 205, 235);
@@ -39,6 +66,10 @@ function drawScene() {
     rect(192, 148, 16, 3);
 }
 
+/**
+ * Draws a white splat. x and y are the middle of it and size is how big
+ * it is (1 is normal). It is a big blob with three drops around it.
+ */
 function drawSplat(x, y, size) {
     fill(255);
     ellipse(x, y, 22 * size, 12 * size);
@@ -47,6 +78,11 @@ function drawSplat(x, y, size) {
     circle(x + 3 * size, y + 9 * size, 4 * size);
 }
 
+/**
+ * Draws a flying bird. x and y are the middle of his body, size is how
+ * long he is and r, g and b are his colour. wing is 1 if his wing is
+ * up and -1 if it is down. Every part is worked out from the size.
+ */
 function drawBird(x, y, size, r, g, b, wing) {
     // Tail (a little darker than the body)
     fill(r - 40, g - 40, b - 40);
@@ -84,6 +120,9 @@ function drawBird(x, y, size, r, g, b, wing) {
     );
 }
 
+/**
+ * Every click is a pigeon dropping a splat where the mouse is
+ */
 function mousePressed() {
     // A splat where the mouse is, and every one is a different size
     drawSplat(mouseX, mouseY, random(0.6, 1.4));
@@ -100,7 +139,9 @@ function mousePressed() {
     drawBird(mouseX - 8, mouseY - 70, 30, 140, 140, 155, wing);
 }
 
+/**
+ * Any key cleans the statue by drawing the whole scene again
+ */
 function keyPressed() {
-    // Any key cleans the statue by drawing the whole scene again
     drawScene();
 }
