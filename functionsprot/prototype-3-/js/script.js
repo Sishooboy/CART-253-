@@ -1,6 +1,7 @@
 function setup() {
     createCanvas(400, 400);
     noStroke();
+    cursor(CROSS);
     drawScene();
 }
 
@@ -46,9 +47,57 @@ function drawSplat(x, y, size) {
     circle(x + 3 * size, y + 9 * size, 4 * size);
 }
 
+function drawBird(x, y, size, r, g, b, wing) {
+    // Tail (a little darker than the body)
+    fill(r - 40, g - 40, b - 40);
+    triangle(
+        x - 0.45 * size, y,
+        x - 0.85 * size, y - 0.12 * size,
+        x - 0.85 * size, y + 0.12 * size
+    );
+
+    // Body
+    fill(r, g, b);
+    ellipse(x, y, size, 0.5 * size);
+
+    // Head
+    circle(x + 0.45 * size, y - 0.05 * size, 0.3 * size);
+
+    // Beak
+    fill(255, 170, 0);
+    triangle(
+        x + 0.58 * size, y - 0.09 * size,
+        x + 0.58 * size, y + 0.01 * size,
+        x + 0.8 * size, y - 0.04 * size
+    );
+
+    // Eye
+    fill(0);
+    circle(x + 0.5 * size, y - 0.1 * size, 0.06 * size);
+
+    // Wing (it points up if wing is 1 and down if wing is -1)
+    fill(r - 40, g - 40, b - 40);
+    triangle(
+        x - 0.2 * size, y - 0.1 * size * wing,
+        x + 0.2 * size, y - 0.1 * size * wing,
+        x - 0.15 * size, y - 0.8 * size * wing
+    );
+}
+
 function mousePressed() {
     // A splat where the mouse is, and every one is a different size
     drawSplat(mouseX, mouseY, random(0.6, 1.4));
+
+    // A drop that is still on its way down
+    fill(255);
+    circle(mouseX, mouseY - 30, 6);
+
+    // And the pigeon that dropped it, with his wing up or down
+    let wing = 1;
+    if (random(1) < 0.5) {
+        wing = -1;
+    }
+    drawBird(mouseX - 8, mouseY - 70, 30, 140, 140, 155, wing);
 }
 
 function keyPressed() {
