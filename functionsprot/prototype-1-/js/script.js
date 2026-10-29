@@ -1,7 +1,28 @@
+/**
+ * Owl Family
+ * Charbel Dagher
+ *
+ * A family of four owls sitting on a branch under the moon. They are all
+ * drawn by the same function, drawOwl(), which takes the position, the
+ * size and the colour of each owl as parameters, so I only had to write
+ * the owl once.
+ *
+ * Uses:
+ * - a function with parameters: drawOwl(x, y, size, r, g, b)
+ */
+
+"use strict";
+
+/**
+ * Creates the canvas
+ */
 function setup() {
     createCanvas(400, 400);
 }
 
+/**
+ * Draws the night sky, the branch and the four owls
+ */
 function draw() {
     background(30, 40, 80);
     noStroke();
@@ -21,6 +42,11 @@ function draw() {
     drawOwl(335, 249, 85, 100, 80, 70);
 }
 
+/**
+ * Draws an owl. x and y are the middle of his body, size is how wide
+ * he is, and r, g and b are his colour. Every part is worked out from
+ * the size, so a bigger owl is just a scaled up owl.
+ */
 function drawOwl(x, y, size, r, g, b) {
     // Ears
     fill(r, g, b);
