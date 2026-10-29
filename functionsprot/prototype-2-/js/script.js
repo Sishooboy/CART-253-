@@ -1,12 +1,13 @@
-let penguin = {
-    x: 200,
-    y: 290,
-    size: 100,
-    speed: 2
-};
+let penguin1;
+let penguin2;
+let penguin3;
 
 function setup() {
     createCanvas(400, 400);
+
+    penguin1 = createPenguin(250);
+    penguin2 = createPenguin(295);
+    penguin3 = createPenguin(340);
 }
 
 function draw() {
@@ -17,13 +18,34 @@ function draw() {
     fill(245);
     rect(0, 230, 400, 170);
 
-    movePenguin(penguin);
-    drawPenguin(penguin);
+    movePenguin(penguin1);
+    movePenguin(penguin2);
+    movePenguin(penguin3);
+
+    drawPenguin(penguin1);
+    drawPenguin(penguin2);
+    drawPenguin(penguin3);
+}
+
+function createPenguin(y) {
+    let penguin = {
+        x: random(0, 400),
+        y: y,
+        size: random(40, 70),
+        glide: random(0.008, 0.015),
+        r: random(100, 255),
+        g: random(0, 255),
+        b: random(0, 255)
+    };
+    return penguin;
 }
 
 function movePenguin(penguin) {
-    // He slides to the right, and comes back from the left
-    penguin.x = penguin.x + penguin.speed;
+    // He is fast at first and slows down as he goes. His target is past
+    // the right edge, so he still slides off the screen
+    penguin.x = penguin.x + (width + 200 - penguin.x) * penguin.glide;
+
+    // Once he is off the screen he starts again from the left
     if (penguin.x > width + 100) {
         penguin.x = -100;
     }
@@ -38,8 +60,8 @@ function drawPenguin(penguin) {
     fill(30);
     ellipse(x, y, 1.4 * s, 0.6 * s);
 
-    // Belly
-    fill(255);
+    // Belly (every penguin has his own colour)
+    fill(penguin.r, penguin.g, penguin.b);
     ellipse(x, y + 0.12 * s, 1.2 * s, 0.3 * s);
 
     // Head
