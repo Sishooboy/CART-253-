@@ -35,3 +35,13 @@ I'm handing this one in late because I started it late, so I did it in the p5 ed
 I didn't like working with millis() because you have to save a time and subtract it from the current time every frame, which was hard to picture and easy to get wrong. I still used it for the hungry bird but for the others I used a counter that goes down every frame, which is way easier to read. What I learned is that events only change variables and then the same if statements from last week decide what happens. I hope people feel a little guilty for dropping the bird, or proud for being patient with the sleepy one.
 
 ![Sleepy Bird](images/sleepybird.png)
+
+## functions assignment
+
+I liked this assignment because functions made it so much easier to fill the screen with stuff. For the first one I made a family of owls, I drew one owl and then turned it into a function with parameters for the position, the size and the colour, so I could call it four times and get a family on a branch under the moon. The second one was my favorite, penguins that slide on their bellies, shoot in fast and slow down before they leave the screen. This one has a function that returns a new penguin with a random size, speed and belly colour, which took me the longest to understand because you have to store what it gives back in a variable. Clicking makes a whole new colony.
+
+The last one I really didn't like how it turned out compared to what I had in mind. I had something way more alive in mind and I wasn't sure I could make it come to life, so I ended up with a statue that you click to make a pigeon drop splats on it, but the pigeons don't move and you can have flying splat lol. It's funny for like a minute but it's not what I pictured. The functions do get called again on every click though, so I guess it still shows the idea.
+
+Overall I think I understand functions much better now, especially parameters and how one function can be used again and again instead of copying the same code. I want to come back to the idea I had for the last one having a pigeon come in drop its splat and fly away.
+
+![Colored Penguin Colony](images/coloredpenguins.png)

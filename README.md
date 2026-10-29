@@ -104,3 +104,28 @@ this will be my CART 253 project showcase website!Hope you like it!!!! (Odyssy i
 - [View the code](eventprot/prototype-3-/js/script.js)
 
 [Read my journal entry for this assignment](journal.md#events-assignment)
+
+## Prototyping: Functions
+
+### Owl Family
+
+![Owl Family prototype](images/owlfamily.png)
+
+- [Run the prototype](https://sishooboy.github.io/CART-253-/functionsprot/prototype-1-/)
+- [View the code](functionsprot/prototype-1-/js/script.js)
+
+### Colored Penguin Colony
+
+![Colored Penguin Colony prototype](images/coloredpenguins.png)
+
+- [Run the prototype](https://sishooboy.github.io/CART-253-/functionsprot/prototype-2-/)
+- [View the code](functionsprot/prototype-2-/js/script.js)
+
+### Pigeon Problem
+
+![Pigeon Problem prototype](images/pigeonproblem.png)
+
+- [Run the prototype](https://sishooboy.github.io/CART-253-/functionsprot/prototype-3-/)
+- [View the code](functionsprot/prototype-3-/js/script.js)
+
+[Read my journal entry for this assignment](journal.md#functions-assignment)
