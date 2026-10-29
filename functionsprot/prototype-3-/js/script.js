@@ -34,3 +34,12 @@ function setup() {
     circle(209, 133, 4);
     rect(192, 148, 16, 3);
 }
+
+function mousePressed() {
+    // A white splat where the mouse is
+    fill(255);
+    ellipse(mouseX, mouseY, 22, 12);
+    circle(mouseX - 14, mouseY + 4, 5);
+    circle(mouseX + 13, mouseY - 3, 4);
+    circle(mouseX + 3, mouseY + 9, 4);
+}
