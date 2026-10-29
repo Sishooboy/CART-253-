@@ -1,7 +1,10 @@
 function setup() {
     createCanvas(400, 400);
     noStroke();
+    drawScene();
+}
 
+function drawScene() {
     // Sky
     background(150, 205, 235);
 
@@ -35,11 +38,20 @@ function setup() {
     rect(192, 148, 16, 3);
 }
 
-function mousePressed() {
-    // A white splat where the mouse is
+function drawSplat(x, y, size) {
     fill(255);
-    ellipse(mouseX, mouseY, 22, 12);
-    circle(mouseX - 14, mouseY + 4, 5);
-    circle(mouseX + 13, mouseY - 3, 4);
-    circle(mouseX + 3, mouseY + 9, 4);
+    ellipse(x, y, 22 * size, 12 * size);
+    circle(x - 14 * size, y + 4 * size, 5 * size);
+    circle(x + 13 * size, y - 3 * size, 4 * size);
+    circle(x + 3 * size, y + 9 * size, 4 * size);
+}
+
+function mousePressed() {
+    // A splat where the mouse is, and every one is a different size
+    drawSplat(mouseX, mouseY, random(0.6, 1.4));
+}
+
+function keyPressed() {
+    // Any key cleans the statue by drawing the whole scene again
+    drawScene();
 }
