@@ -1,7 +1,8 @@
 let penguin = {
     x: 200,
     y: 290,
-    size: 100
+    size: 100,
+    speed: 2
 };
 
 function setup() {
@@ -16,7 +17,16 @@ function draw() {
     fill(245);
     rect(0, 230, 400, 170);
 
+    movePenguin(penguin);
     drawPenguin(penguin);
+}
+
+function movePenguin(penguin) {
+    // He slides to the right, and comes back from the left
+    penguin.x = penguin.x + penguin.speed;
+    if (penguin.x > width + 100) {
+        penguin.x = -100;
+    }
 }
 
 function drawPenguin(penguin) {
