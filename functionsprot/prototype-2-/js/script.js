@@ -4,10 +4,7 @@ let penguin3;
 
 function setup() {
     createCanvas(400, 400);
-
-    penguin1 = createPenguin(250);
-    penguin2 = createPenguin(295);
-    penguin3 = createPenguin(340);
+    makeColony();
 }
 
 function draw() {
@@ -25,6 +22,12 @@ function draw() {
     drawPenguin(penguin1);
     drawPenguin(penguin2);
     drawPenguin(penguin3);
+}
+
+function makeColony() {
+    penguin1 = createPenguin(250);
+    penguin2 = createPenguin(295);
+    penguin3 = createPenguin(340);
 }
 
 function createPenguin(y) {
@@ -75,4 +78,9 @@ function drawPenguin(penguin) {
         x + 0.82 * s, y + 0.02 * s,
         x + s, y - 0.04 * s
     );
+}
+
+function mousePressed() {
+    // Clicking makes a whole new colony
+    makeColony();
 }
