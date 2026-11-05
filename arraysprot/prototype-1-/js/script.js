@@ -32,6 +32,9 @@ let bios = [
 
 let current = 0;
 
+let verdict = "";
+let verdictTimer = 0;
+
 function setup() {
     createCanvas(400, 400);
 }
@@ -51,6 +54,21 @@ function draw() {
     text(names[current], 200, 205);
     textSize(15);
     text(bios[current], 70, 250, 260, 90);
+
+    textSize(14);
+    text("Left arrow: nope     Right arrow: like", 200, 15);
+
+    if (verdictTimer > 0) {
+        verdictTimer = verdictTimer - 1;
+        textSize(26);
+        if (verdict === "LIKE") {
+            fill(60, 170, 80);
+        }
+        else {
+            fill(220, 60, 60);
+        }
+        text(verdict, 200, 44);
+    }
 }
 
 function drawBird(x, y, size, colour) {
@@ -77,10 +95,26 @@ function drawBird(x, y, size, colour) {
     circle(x + 0.2 * size, y - 0.15 * size, 0.1 * size);
 }
 
-function mousePressed() {
-    current = current + 1;
+function swipe(liked) {
+    if (liked) {
+        verdict = "LIKE";
+    }
+    else {
+        verdict = "NOPE";
+    }
+    verdictTimer = 40;
 
+    current = current + 1;
     if (current >= names.length) {
         current = 0;
+    }
+}
+
+function keyPressed() {
+    if (key === "ArrowRight") {
+        swipe(true);
+    }
+    else if (key === "ArrowLeft") {
+        swipe(false);
     }
 }
