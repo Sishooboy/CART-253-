@@ -43,6 +43,15 @@ function draw() {
     background(255, 225, 240);
     noStroke();
 
+    if (current >= names.length) {
+        drawEnd();
+    }
+    else {
+        drawProfile();
+    }
+}
+
+function drawProfile() {
     fill(255);
     rect(50, 40, 300, 320, 20);
 
@@ -69,6 +78,16 @@ function draw() {
         }
         text(verdict, 200, 44);
     }
+}
+
+function drawEnd() {
+    fill(0);
+    textAlign(CENTER, TOP);
+    textSize(28);
+    text("No more birds nearby", 200, 90);
+
+    textSize(15);
+    text("Press any key to look again", 200, 330);
 }
 
 function drawBird(x, y, size, colour) {
@@ -105,13 +124,14 @@ function swipe(liked) {
     verdictTimer = 40;
 
     current = current + 1;
-    if (current >= names.length) {
-        current = 0;
-    }
 }
 
 function keyPressed() {
-    if (key === "ArrowRight") {
+    if (current >= names.length) {
+        current = 0;
+        verdictTimer = 0;
+    }
+    else if (key === "ArrowRight") {
         swipe(true);
     }
     else if (key === "ArrowLeft") {
