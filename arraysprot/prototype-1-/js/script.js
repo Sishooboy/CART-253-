@@ -30,6 +30,8 @@ let bios = [
     "Likes: sunsets, worms and long walks on power lines."
 ];
 
+let matches = [];
+
 let current = 0;
 
 let verdict = "";
@@ -86,6 +88,14 @@ function drawEnd() {
     textSize(28);
     text("No more birds nearby", 200, 90);
 
+    textSize(18);
+    if (matches.length === 0) {
+        text("You matched with nobody. The birds will be fine.", 50, 170, 300, 100);
+    }
+    else {
+        text("You matched with: " + matches.join(", ") + ".", 50, 170, 300, 100);
+    }
+
     textSize(15);
     text("Press any key to look again", 200, 330);
 }
@@ -116,6 +126,7 @@ function drawBird(x, y, size, colour) {
 
 function swipe(liked) {
     if (liked) {
+        matches.push(names[current]);
         verdict = "LIKE";
     }
     else {
@@ -129,6 +140,7 @@ function swipe(liked) {
 function keyPressed() {
     if (current >= names.length) {
         current = 0;
+        matches = [];
         verdictTimer = 0;
     }
     else if (key === "ArrowRight") {
