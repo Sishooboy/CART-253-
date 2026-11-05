@@ -1,3 +1,20 @@
+let phrases = [
+    "I was flying in montreal",
+    "I was very hungry",
+    "I saw the letter 'c' next to a building",
+    "I thought they had some cereal so I started spyin the window",
+    "Saw a person and screen",
+    "Apparently he is called pippin",
+    "there was a horse race on the screen",
+    "I enjoyed the race",
+    "forgot i was hungry",
+    "just stayed there"
+];
+
+let message = "Click to make me talk";
+
+let nextPhrase = 0;
+
 function setup() {
     createCanvas(400, 400);
 }
@@ -9,14 +26,21 @@ function draw() {
     fill(110, 70, 30);
     rect(100, 305, 200, 14);
 
-    drawBubble();
+    drawBubble(message);
     drawParrot();
 }
 
-function drawBubble() {
+function drawBubble(words) {
+    push();
     fill(255);
     rect(40, 30, 320, 70, 15);
     triangle(185, 99, 215, 99, 200, 122);
+
+    fill(0);
+    textSize(18);
+    textAlign(CENTER, CENTER);
+    text(words, 40, 30, 320, 70);
+    pop();
 }
 
 function drawParrot() {
@@ -48,4 +72,13 @@ function drawParrot() {
     fill(255, 190, 0);
     rect(184, 296, 9, 14);
     rect(207, 296, 9, 14);
+}
+
+function mousePressed() {
+    message = phrases[nextPhrase];
+
+    nextPhrase = nextPhrase + 1;
+    if (nextPhrase >= phrases.length) {
+        nextPhrase = 0;
+    }
 }
