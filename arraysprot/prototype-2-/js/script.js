@@ -15,6 +15,10 @@ let message = "Click to make me talk";
 
 let nextPhrase = 0;
 
+let lineNumber = 0;
+
+let talkTimer = 0;
+
 function setup() {
     createCanvas(400, 400);
 }
@@ -26,8 +30,27 @@ function draw() {
     fill(110, 70, 30);
     rect(100, 305, 200, 14);
 
+    let mouth = 0;
+    if (talkTimer > 0) {
+        talkTimer = talkTimer - 1;
+        if (talkTimer % 10 < 5) {
+            mouth = 8;
+        }
+    }
+
     drawBubble(message);
-    drawParrot();
+    drawParrot(mouth);
+
+    fill(0);
+    textSize(16);
+    if (lineNumber > 0) {
+        text("Line " + lineNumber + " of " + phrases.length, 15, 392);
+    }
+}
+
+function speak(words) {
+    message = words;
+    talkTimer = 50;
 }
 
 function drawBubble(words) {
@@ -43,7 +66,7 @@ function drawBubble(words) {
     pop();
 }
 
-function drawParrot() {
+function drawParrot(mouth) {
     fill(200, 60, 60);
     triangle(180, 290, 215, 290, 185, 385);
     fill(60, 100, 200);
@@ -66,6 +89,8 @@ function drawParrot() {
     circle(186, 146, 10);
     circle(214, 146, 10);
 
+    fill(220, 110, 0);
+    triangle(190, 168 + mouth, 210, 168 + mouth, 200, 184 + mouth);
     fill(255, 150, 0);
     triangle(186, 160, 214, 160, 200, 182);
 
@@ -75,10 +100,17 @@ function drawParrot() {
 }
 
 function mousePressed() {
-    message = phrases[nextPhrase];
+    speak(phrases[nextPhrase]);
+    lineNumber = nextPhrase + 1;
 
     nextPhrase = nextPhrase + 1;
     if (nextPhrase >= phrases.length) {
         nextPhrase = 0;
     }
+}
+
+function keyPressed() {
+    nextPhrase = 0;
+    lineNumber = 0;
+    message = "Click to make me talk";
 }
