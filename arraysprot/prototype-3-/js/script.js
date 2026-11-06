@@ -1,3 +1,9 @@
+let birdColours = ["gold", "tomato", "deepskyblue", "limegreen", "hotpink"];
+
+let reel1 = "gold";
+let reel2 = "tomato";
+let reel3 = "deepskyblue";
+
 function setup() {
     createCanvas(400, 400);
     textAlign(CENTER, TOP);
@@ -18,9 +24,13 @@ function draw() {
     rect(160, 100, 80, 120, 10);
     rect(245, 100, 80, 120, 10);
 
-    drawBird(115, 160, 50, "gold");
-    drawBird(200, 160, 50, "tomato");
-    drawBird(285, 160, 50, "deepskyblue");
+    drawBird(115, 160, 50, reel1);
+    drawBird(200, 160, 50, reel2);
+    drawBird(285, 160, 50, reel3);
+
+    fill(0);
+    textSize(16);
+    text("Click to spin", 200, 340);
 }
 
 function drawBird(x, y, size, colour) {
@@ -45,4 +55,10 @@ function drawBird(x, y, size, colour) {
 
     fill(0);
     circle(x + 0.2 * size, y - 0.15 * size, 0.1 * size);
+}
+
+function mousePressed() {
+    reel1 = random(birdColours);
+    reel2 = random(birdColours);
+    reel3 = random(birdColours);
 }
