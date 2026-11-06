@@ -1,3 +1,15 @@
+/**
+ * Bird Slots
+ * Charbel Dagher
+ *
+ * A slot machine with birds. Click to spin, and the three windows stop one
+ * after the other on a random bird from an array. Three the same is a
+ * jackpot.
+ */
+
+"use strict";
+
+// The birds and their names go together, the same number is the same bird
 let birdColours = ["gold", "tomato", "deepskyblue", "limegreen", "hotpink"];
 let birdNames = ["Chick", "Cardinal", "Bluebird", "Parrot", "Flamingo"];
 
@@ -64,6 +76,7 @@ function draw() {
     text("Click to spin", 200, 360);
 }
 
+// Keeps the windows changing until the spin is over
 function updateReels() {
     if (spinTimer > 0) {
         if (frameCount % 4 === 0) {
@@ -83,6 +96,7 @@ function updateReels() {
     }
 }
 
+// Decides if you won, nearly won or lost
 function checkResult() {
     spins = spins + 1;
 
@@ -100,6 +114,7 @@ function checkResult() {
     }
 }
 
+// Draws a bird, everything is worked out from its size
 function drawBird(x, y, size, colour) {
     fill(colour);
     triangle(
@@ -124,6 +139,7 @@ function drawBird(x, y, size, colour) {
     circle(x + 0.2 * size, y - 0.15 * size, 0.1 * size);
 }
 
+// A click starts a spin, unless one is already going
 function mousePressed() {
     if (spinTimer === 0) {
         spinTimer = 60;
