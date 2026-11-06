@@ -1,3 +1,14 @@
+/**
+ * Parrot Talk
+ * Charbel Dagher
+ *
+ * A parrot who tells a story. Every click makes him say the next phrase
+ * from an array, and after the last one he starts again. Press any key
+ * to restart the story.
+ */
+
+"use strict";
+
 let phrases = [
     "I was flying in montreal",
     "I was very hungry",
@@ -48,11 +59,13 @@ function draw() {
     }
 }
 
+// Shows the words in the bubble and makes his beak move
 function speak(words) {
     message = words;
     talkTimer = 50;
 }
 
+// Draws the speech bubble with the words inside
 function drawBubble(words) {
     push();
     fill(255);
@@ -66,6 +79,7 @@ function drawBubble(words) {
     pop();
 }
 
+// Draws the parrot, mouth is how far his bottom beak drops
 function drawParrot(mouth) {
     fill(200, 60, 60);
     triangle(180, 290, 215, 290, 185, 385);
@@ -99,6 +113,7 @@ function drawParrot(mouth) {
     rect(207, 296, 9, 14);
 }
 
+// A click says the next phrase
 function mousePressed() {
     speak(phrases[nextPhrase]);
     lineNumber = nextPhrase + 1;
@@ -109,6 +124,7 @@ function mousePressed() {
     }
 }
 
+// Any key restarts the story
 function keyPressed() {
     nextPhrase = 0;
     lineNumber = 0;
