@@ -1,4 +1,14 @@
 let birdColours = ["gold", "tomato", "deepskyblue", "limegreen", "hotpink"];
+let birdNames = ["Chick", "Cardinal", "Bluebird", "Parrot", "Flamingo"];
+
+let loseMessages = [
+    "The birds are laughing at you",
+    "Not today",
+    "Even a pigeon could do better",
+    "Wow. Nothing. Impressive.",
+    "The birds always win",
+    "Have you tried turning the bird off and on?"
+];
 
 let reel1 = "gold";
 let reel2 = "tomato";
@@ -7,6 +17,10 @@ let reel3 = "deepskyblue";
 let spinTimer = 0;
 
 let message = "Click to spin";
+let won = false;
+
+let spins = 0;
+let jackpots = 0;
 
 function setup() {
     createCanvas(400, 400);
@@ -36,12 +50,18 @@ function draw() {
 
     fill(60, 20, 30);
     rect(70, 235, 260, 55, 12);
-    fill(255);
+    if (won) {
+        fill(255, 220, 0);
+    }
+    else {
+        fill(255);
+    }
     textSize(16);
     text(message, 80, 250, 240, 40);
 
     fill(0);
-    text("Click to spin", 200, 340);
+    text("Spins: " + spins + "     Jackpots: " + jackpots, 200, 330);
+    text("Click to spin", 200, 360);
 }
 
 function updateReels() {
@@ -64,14 +84,19 @@ function updateReels() {
 }
 
 function checkResult() {
+    spins = spins + 1;
+
     if (reel1 === reel2 && reel2 === reel3) {
-        message = "JACKPOT!";
+        let name = birdNames[birdColours.indexOf(reel1)];
+        message = "JACKPOT! Three " + name + "s!";
+        won = true;
+        jackpots = jackpots + 1;
     }
     else if (reel1 === reel2 || reel2 === reel3 || reel1 === reel3) {
         message = "Two match. So close!";
     }
     else {
-        message = "Nothing matches";
+        message = random(loseMessages);
     }
 }
 
@@ -103,5 +128,6 @@ function mousePressed() {
     if (spinTimer === 0) {
         spinTimer = 60;
         message = "Spinning...";
+        won = false;
     }
 }
