@@ -45,3 +45,11 @@ The last one I really didn't like how it turned out compared to what I had in mi
 Overall I think I understand functions much better now, especially parameters and how one function can be used again and again instead of copying the same code. I want to come back to the idea I had for the last one having a pigeon come in drop its splat and fly away.
 
 ![Colored Penguin Colony](images/coloredpenguins.png)
+
+## arrays assignment
+
+This week was about arrays so I kept doing birds. The first one is a dating app for birds, each bird has a name, a colour, a size and a bio, so I made four arrays that go together. You swipe with the arrow keys and at the end it tells you who you matched with, which is an empty array that grows every time you like a bird. The second one is a parrot that tells a story about it being coming across a non expected thing in Montreal while searching for cornflakes. Each click he says the next line from his array and his beak moves while he talks. The last one is a slot machine with birds, you click, the windows stop one after the other and three of the same bird is a jackpot.
+
+I had to change my ideas a few times because they were too complicated. The slot machine took the longest because I wanted the birds to show up one by one and not all at once. A jackpot is pretty rare with only 5 colours, which makes it feel good when it happens. What I learned is that an array is just a list where every item has a number, and random() can pick from it. Another thing I like is that if I add a new bird to the list, the rest of the code still works without changing anything. My favorite part is the losing messages because the machine is very rude to you.
+
+![Bird Slots](images/birdslots.png)

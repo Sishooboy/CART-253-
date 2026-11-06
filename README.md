@@ -129,3 +129,28 @@ this will be my CART 253 project showcase website!Hope you like it!!!! (Odyssy i
 - [View the code](functionsprot/prototype-3-/js/script.js)
 
 [Read my journal entry for this assignment](journal.md#functions-assignment)
+
+## Prototyping: Arrays
+
+### Bird Dating
+
+![Bird Dating prototype](images/birddating.png)
+
+- [Run the prototype](https://sishooboy.github.io/CART-253-/arraysprot/prototype-1-/)
+- [View the code](arraysprot/prototype-1-/js/script.js)
+
+### Parrot Talk
+
+![Parrot Talk prototype](images/parrottalk.png)
+
+- [Run the prototype](https://sishooboy.github.io/CART-253-/arraysprot/prototype-2-/)
+- [View the code](arraysprot/prototype-2-/js/script.js)
+
+### Bird Slots
+
+![Bird Slots prototype](images/birdslots.png)
+
+- [Run the prototype](https://sishooboy.github.io/CART-253-/arraysprot/prototype-3-/)
+- [View the code](arraysprot/prototype-3-/js/script.js)
+
+[Read my journal entry for this assignment](journal.md#arrays-assignment)
