@@ -1,22 +1,29 @@
 
 
 "use strict";
-let stonegif;
-let stoneimg;
-let talkingif;
-let stoneX = -100;
-let stoneState = "walking";
-let standTimer = 60;
-let talkTimer = 180;
+let stone = {
+    x: -100,
+    y: 250,
+    size: 200,
+    speed: 5,
+    targetX: 300,
+    state: "walking",
+    standTimer: 60,
+    talkTimer: 180,
+    walkImg: undefined,
+    standImg: undefined,
+    talkImg: undefined
+};
+
 let gamestate = "menu";
 let brightness = 255;
 
 async function setup() {
     createCanvas(600, 400);
     noSmooth();
-    stonegif = await loadImage("assets/stonegif.gif");
-    stoneimg = await loadImage("assets/stoneimg.png");
-    talkingif = await loadImage("assets/talkingif.gif");
+    stone.walkImg = await loadImage("assets/stonegif.gif");
+    stone.standImg = await loadImage("assets/stoneimg.png");
+    stone.talkImg = await loadImage("assets/talkingif.gif");
 }
 
 function draw() {
@@ -41,30 +48,41 @@ function drawGame() {
     background(20, 10, 120);
     imageMode(CENTER);
 
-    if (stoneState === "walking") {
-        stoneX = stoneX + 5;
-        image(stonegif, stoneX, 250, 200, 200);
-        if (stoneX >= 300) {
-            stoneState = "standing";
+    updateStone();
+    drawStone();
+}
+
+function updateStone() {
+    if (stone.state === "walking") {
+        stone.x = stone.x + stone.speed;
+        if (stone.x >= stone.targetX) {
+            stone.x = stone.targetX;
+            stone.state = "standing";
         }
     }
-    else if (stoneState === "standing") {
-        image(stoneimg, 300, 250, 200, 200);
-        standTimer = standTimer - 1;
-        if (standTimer <= 0) {
-            stoneState = "talking";
+    else if (stone.state === "standing") {
+        stone.standTimer = stone.standTimer - 1;
+        if (stone.standTimer <= 0) {
+            stone.state = "talking";
         }
     }
-    else if (stoneState === "talking") {
-        image(talkingif, 300, 250, 200, 200);
-        talkTimer = talkTimer - 1;
-        if (talkTimer <= 0) {
-            stoneState = "done";
+    else if (stone.state === "talking") {
+        stone.talkTimer = stone.talkTimer - 1;
+        if (stone.talkTimer <= 0) {
+            stone.state = "done";
         }
     }
-    else if (stoneState === "done") {
-        image(stoneimg, 300, 250, 200, 200);
+}
+
+function drawStone() {
+    let img = stone.standImg;
+    if (stone.state === "walking") {
+        img = stone.walkImg;
     }
+    else if (stone.state === "talking") {
+        img = stone.talkImg;
+    }
+    image(img, stone.x, stone.y, stone.size, stone.size);
 }
 
 function drawButton(x, y, w, h, label) {
