@@ -28,7 +28,10 @@ let lines = ["Hi user,",
 
     "I'm here to prove 2 points in 1 sentence,",
 
-    "I'm here to kill 2 birds with 1 stone."]
+    "I'm here to kill 2 birds with 1 stone.",
+
+    "Will you help me?"]
+
 
 
 
@@ -43,10 +46,39 @@ let stone = {
     talkTimer: 100,
     walkImg: undefined,
     standImg: undefined,
-    talkImg: undefined
+    talkImg: undefined,
+
 };
+let IGstone = {
+    gravity: 0.02,
+    ballImg: undefined,
+    x: 100,
+    y: 100,
+    Size: 50,
+    velocity: {
+        x: 1,
+        y: -1.5
+    },
+    state: "neutral"
+
+};
+
+let birds = {
+    bird1: {
+        img: undefined,
+        x: 330,
+        y: 340,
+        size: 70
+    },
+    bird2: {
+        img: undefined,
+        x: 430,
+        y: 340,
+        size: 70
+    }
+}
 let lineNumber = 0;
-let gamestate = "menu";
+let gamestate = "play";
 let brightness = 255;
 
 async function setup() {
@@ -55,10 +87,16 @@ async function setup() {
     stone.walkImg = await loadImage("assets/stonegif.gif");
     stone.standImg = await loadImage("assets/stoneimg.png");
     stone.talkImg = await loadImage("assets/talkingif.gif");
+    IGstone.ballImg = await loadImage("assets/stoneball.png");
+    birds.bird1.img = await loadImage("assets/bird1.png");
+    birds.bird2.img = await loadImage("assets/bird2.png");
 }
 
 function draw() {
     background(20, 10, 120);
+    if (gamestate === "play") {
+        playGame();
+    }
 
     if (gamestate === "menu") {
         drawMenu();
@@ -83,6 +121,21 @@ function drawGame() {
     drawStone();
     WRITE();
 }
+function playGame() {
+    imageMode(CENTER);
+    let img1 = IGstone.ballImg;
+    image(img1, IGstone.x, IGstone.y, IGstone.Size, IGstone.Size);
+    image(birds.bird1.img, birds.bird1.x, birds.bird1.y, birds.bird1.size, birds.bird1.size);
+    image(birds.bird2.img, birds.bird2.x, birds.bird2.y, birds.bird2.size, birds.bird2.size);
+    moveIGstone();
+}
+function moveIGstone() {
+    if (IGstone.state === "flying") {
+        IGstone.velocity.y += IGstone.gravity;
+        IGstone.x = IGstone.x + IGstone.velocity.x;
+        IGstone.y = IGstone.y + IGstone.velocity.y;
+    }
+}
 
 function updateStone() {
     if (stone.state === "walking") {
@@ -92,26 +145,16 @@ function updateStone() {
             stone.state = "standing";
         }
     }
-    /*else if (stone.state === "standing") {
 
-        stone.standTimer = stone.standTimer - 1;
-        if (stone.standTimer <= 0) {
-            stone.state = "talking";
-        }
-    }*/
-
-    /*else if (stone.state === "talking") {
-        stone.talkTimer = stone.talkTimer - 1;
-        if (stone.talkTimer <= 0) {
-            stone.state = "done";
-        }
-    }*/
 }
 function WRITE() {
 
     if (stone.state === "talking") {
         drawButton(300, 300, 500, 100, lines[lineNumber], 20);
         stone.talkTimer = stone.talkTimer - 1;
+        if (stone.talkTimer <= 0 && lineNumber == lines.length - 1) {
+            gamestate = "done";
+        }
         if (stone.talkTimer <= 0) {
             lineNumber++;
             stone.standTimer = 60;
@@ -124,6 +167,7 @@ function WRITE() {
         stone.standTimer = stone.standTimer - 1;
         if (stone.standTimer <= 0) {
             if (lineNumber == 9) { stone.talkTimer = 200; }
+            else if (lineNumber == lines.length - 1) { stone.talkTimer = 300; }
             else { stone.talkTimer = 130; }
             stone.talkTimer = stone.talkTimer - 1;
             stone.state = "talking";
@@ -138,7 +182,7 @@ function drawStone() {
     else if (stone.state === "talking") {
         img = stone.talkImg;
     }
-    image(img, stone.x, stone.y, stone.size, stone.size);
+    image(img, IGstone.x, IGstone.y, stone.size, stone.size);
 }
 
 function drawButton(x, y, w, h, label, s = 24) {
@@ -163,5 +207,8 @@ function drawButton(x, y, w, h, label, s = 24) {
 function mousePressed() {
     if (mouseX > 200 && mouseX < 400 && mouseY > 175 && mouseY < 225) {
         gamestate = "game";
+    }
+    if (IGstone.state === "neutral") {
+        IGstone.state = "flying";
     }
 }
