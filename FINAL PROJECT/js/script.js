@@ -50,30 +50,31 @@ let stone = {
 
 };
 let IGstone = {
-    gravity: 0.02,
+    gravity: 0.09,
     ballImg: undefined,
     x: 100,
     y: 100,
-    Size: 50,
+    size: 60,
     velocity: {
         x: 1,
         y: -1.5
     },
-    state: "neutral"
-
+    state: "neutral",
+    tempx: 0,
+    tempy: 0,
 };
 
 let birds = {
     bird1: {
         img: undefined,
         x: 330,
-        y: 340,
+        y: 360,
         size: 70
     },
     bird2: {
         img: undefined,
         x: 430,
-        y: 340,
+        y: 360,
         size: 70
     }
 }
@@ -124,12 +125,14 @@ function drawGame() {
 function playGame() {
     imageMode(CENTER);
     let img1 = IGstone.ballImg;
-    image(img1, IGstone.x, IGstone.y, IGstone.Size, IGstone.Size);
+    image(img1, IGstone.x, IGstone.y, IGstone.size, IGstone.size);
     image(birds.bird1.img, birds.bird1.x, birds.bird1.y, birds.bird1.size, birds.bird1.size);
     image(birds.bird2.img, birds.bird2.x, birds.bird2.y, birds.bird2.size, birds.bird2.size);
     moveIGstone();
+
 }
 function moveIGstone() {
+    reset()
     if (IGstone.state === "flying") {
         IGstone.velocity.y += IGstone.gravity;
         IGstone.x = IGstone.x + IGstone.velocity.x;
@@ -182,7 +185,7 @@ function drawStone() {
     else if (stone.state === "talking") {
         img = stone.talkImg;
     }
-    image(img, IGstone.x, IGstone.y, stone.size, stone.size);
+    image(img, stone.x, stone.y, stone.size, stone.size);
 }
 
 function drawButton(x, y, w, h, label, s = 24) {
@@ -205,10 +208,34 @@ function drawButton(x, y, w, h, label, s = 24) {
 }
 
 function mousePressed() {
-    if (mouseX > 200 && mouseX < 400 && mouseY > 175 && mouseY < 225) {
-        gamestate = "game";
+    if (gamestate === "menu") {
+        if (mouseX > 200 && mouseX < 400 && mouseY > 175 && mouseY < 225) {
+            gamestate = "game";
+        }
     }
-    if (IGstone.state === "neutral") {
+    else if (gamestate === "play") {
+        if (IGstone.state === "neutral") {
+            IGstone.tempx = mouseX;
+            IGstone.tempy = mouseY;
+            IGstone.state = "aiming";
+        }
+    }
+}
+
+function mouseReleased() {
+    if (IGstone.state === "aiming") {
+        IGstone.velocity.x = (IGstone.tempx - mouseX) * 0.1;
+        IGstone.velocity.y = (IGstone.tempy - mouseY) * 0.1;
         IGstone.state = "flying";
     }
 }
+function reset() {
+    if (IGstone.x > width || IGstone.y > height || IGstone.x < 0) {
+        IGstone.x = 100;
+        IGstone.y = 100;
+        IGstone.velocity.x = 0;
+        IGstone.velocity.y = 0;
+        IGstone.state = "neutral";
+    }
+}
+
