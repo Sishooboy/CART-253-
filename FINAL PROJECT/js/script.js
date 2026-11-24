@@ -69,13 +69,15 @@ let birds = {
         img: undefined,
         x: 330,
         y: 360,
-        size: 70
+        size: 70,
+        hit: false
     },
     bird2: {
         img: undefined,
         x: 430,
         y: 360,
-        size: 70
+        size: 70,
+        hit: false
     }
 }
 let lineNumber = 0;
@@ -95,10 +97,12 @@ async function setup() {
 
 function draw() {
     background(20, 10, 120);
+    if (gamestate === "done") {
+        drawWin();
+    }
     if (gamestate === "play") {
         playGame();
     }
-
     if (gamestate === "menu") {
         drawMenu();
     }
@@ -110,6 +114,9 @@ function draw() {
     else { brightness = 255; }
 
 
+}
+function drawWin() {
+    drawButton(300, 200, 200, 50, "YOU WIN");
 }
 function drawMenu() {
     drawButton(300, 200, 200, 50, "Start Game");
@@ -126,11 +133,25 @@ function playGame() {
     imageMode(CENTER);
     let img1 = IGstone.ballImg;
     image(img1, IGstone.x, IGstone.y, IGstone.size, IGstone.size);
-    image(birds.bird1.img, birds.bird1.x, birds.bird1.y, birds.bird1.size, birds.bird1.size);
-    image(birds.bird2.img, birds.bird2.x, birds.bird2.y, birds.bird2.size, birds.bird2.size);
+    if (birds.bird1.hit === false) {
+        image(birds.bird1.img, birds.bird1.x, birds.bird1.y, birds.bird1.size, birds.bird1.size);
+    }
+    if (birds.bird2.hit === false) {
+        image(birds.bird2.img, birds.bird2.x, birds.bird2.y, birds.bird2.size, birds.bird2.size);
+    }
     moveIGstone();
+    wingame();
 
 }
+function checkCollision(bird, stone) {
+    if (stone.state === "flying") {
+        let d1 = dist(stone.x, stone.y, bird.x, bird.y);
+        if (d1 < stone.size / 2 + bird.size / 4) {
+            bird.hit = true;
+        }
+    }
+}
+
 function moveIGstone() {
     reset()
     if (IGstone.state === "flying") {
@@ -138,6 +159,8 @@ function moveIGstone() {
         IGstone.x = IGstone.x + IGstone.velocity.x;
         IGstone.y = IGstone.y + IGstone.velocity.y;
     }
+    checkCollision(birds.bird1, IGstone);
+    checkCollision(birds.bird2, IGstone);
 }
 
 function updateStone() {
@@ -204,7 +227,7 @@ function drawButton(x, y, w, h, label, s = 24) {
     fill(0, 200, 255, brightness);
     textAlign(CENTER, CENTER);
     textSize(s);
-    text(label, x, y, w - 30, h - 10);;
+    text(label, x, y, w - 30, h - 10);
 }
 
 function mousePressed() {
@@ -225,7 +248,19 @@ function mousePressed() {
 function mouseReleased() {
     if (IGstone.state === "aiming") {
         IGstone.velocity.x = (IGstone.tempx - mouseX) * 0.1;
+        if (IGstone.velocity.x > 10) {
+            IGstone.velocity.x = 10;
+        }
+        if (IGstone.velocity.x < -10) {
+            IGstone.velocity.x = -10;
+        }
         IGstone.velocity.y = (IGstone.tempy - mouseY) * 0.1;
+        if (IGstone.velocity.y > 10) {
+            IGstone.velocity.y = 10;
+        }
+        if (IGstone.velocity.y < -10) {
+            IGstone.velocity.y = -10;
+        }
         IGstone.state = "flying";
     }
 }
@@ -236,6 +271,18 @@ function reset() {
         IGstone.velocity.x = 0;
         IGstone.velocity.y = 0;
         IGstone.state = "neutral";
-    }
-}
 
+        birds.bird1.hit = false
+        birds.bird2.hit = false
+    }
+
+}
+function wingame() {
+    if (birds.bird1.hit === true && birds.bird2.hit === true) {
+        gamestate = "done";
+    }
+    if (gamestate === "done") {
+        drawButton(300, 200, 500, 100, "You killed both birds with one stone! You win!", 20);
+    }
+
+}
