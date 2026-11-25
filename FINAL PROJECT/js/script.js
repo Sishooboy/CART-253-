@@ -80,6 +80,9 @@ let birds = {
         hit: false
     }
 }
+let platforms = [
+    { x: 300, y: 390, w: 600, h: 20 }
+];
 let lineNumber = 0;
 let gamestate = "play";
 let brightness = 255;
@@ -131,6 +134,9 @@ function drawGame() {
 }
 function playGame() {
     imageMode(CENTER);
+    for (let i = 0; i < platforms.length; i++) {
+        drawPlatform(platforms[i]);
+    }
     let img1 = IGstone.ballImg;
     image(img1, IGstone.x, IGstone.y, IGstone.size, IGstone.size);
     if (birds.bird1.hit === false) {
@@ -228,6 +234,13 @@ function drawButton(x, y, w, h, label, s = 24) {
     textAlign(CENTER, CENTER);
     textSize(s);
     text(label, x, y, w - 30, h - 10);
+}
+
+function drawPlatform(p) {
+    rectMode(CENTER);
+    noStroke();
+    fill(0, 190, 250);
+    rect(p.x, p.y, p.w, p.h);
 }
 
 function mousePressed() {
