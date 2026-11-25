@@ -62,26 +62,29 @@ let IGstone = {
     state: "neutral",
     tempx: 0,
     tempy: 0,
+    angle: 0,
 };
 
 let birds = {
     bird1: {
         img: undefined,
         x: 330,
-        y: 360,
+        y: 345,
         size: 70,
         hit: false
     },
     bird2: {
         img: undefined,
         x: 430,
-        y: 360,
+        y: 345,
         size: 70,
         hit: false
     }
 }
 let platforms = [
-    { x: 300, y: 390, w: 600, h: 20 }
+    { x: 300, y: 390, w: 600, h: 20 },
+    { x: -10, y: -200, w: 20, h: 1200 },
+    { x: 610, y: -200, w: 20, h: 1200 }
 ];
 let lineNumber = 0;
 let gamestate = "play";
@@ -138,7 +141,11 @@ function playGame() {
         drawPlatform(platforms[i]);
     }
     let img1 = IGstone.ballImg;
-    image(img1, IGstone.x, IGstone.y, IGstone.size, IGstone.size);
+    push();
+    translate(IGstone.x, IGstone.y);
+    rotate(IGstone.angle);
+    image(img1, 0, 0, IGstone.size, IGstone.size);
+    pop();
     if (birds.bird1.hit === false) {
         image(birds.bird1.img, birds.bird1.x, birds.bird1.y, birds.bird1.size, birds.bird1.size);
     }
@@ -159,14 +166,43 @@ function checkCollision(bird, stone) {
 }
 
 function moveIGstone() {
-    reset()
     if (IGstone.state === "flying") {
         IGstone.velocity.y += IGstone.gravity;
-        IGstone.x = IGstone.x + IGstone.velocity.x;
-        IGstone.y = IGstone.y + IGstone.velocity.y;
+        IGstone.angle += IGstone.velocity.x * 0.05;
+        moveX();
+        moveY();
     }
     checkCollision(birds.bird1, IGstone);
     checkCollision(birds.bird2, IGstone);
+}
+
+function moveX() {
+    IGstone.x = IGstone.x + IGstone.velocity.x;
+    if (touchingAny()) {
+        IGstone.x = IGstone.x - IGstone.velocity.x;
+        IGstone.velocity.x = IGstone.velocity.x * -0.7;
+    }
+}
+
+function moveY() {
+    IGstone.y = IGstone.y + IGstone.velocity.y;
+    if (touchingAny()) {
+        let landing = IGstone.velocity.y > 0;
+        IGstone.y = IGstone.y - IGstone.velocity.y;
+        IGstone.velocity.y = IGstone.velocity.y * -0.7;
+        if (landing && abs(IGstone.velocity.y) < 1 && abs(IGstone.velocity.x) < 0.3) {
+            reset();
+        }
+    }
+}
+
+function touchingAny() {
+    for (let i = 0; i < platforms.length; i++) {
+        if (touching(platforms[i])) {
+            return true;
+        }
+    }
+    return false;
 }
 
 function updateStone() {
@@ -185,7 +221,7 @@ function WRITE() {
         drawButton(300, 300, 500, 100, lines[lineNumber], 20);
         stone.talkTimer = stone.talkTimer - 1;
         if (stone.talkTimer <= 0 && lineNumber == lines.length - 1) {
-            gamestate = "done";
+            gamestate = "play";
         }
         if (stone.talkTimer <= 0) {
             lineNumber++;
@@ -243,6 +279,22 @@ function drawPlatform(p) {
     rect(p.x, p.y, p.w, p.h);
 }
 
+function touching(p) {
+    let left = p.x - p.w / 2;
+    let right = p.x + p.w / 2;
+    let top = p.y - p.h / 2;
+    let bottom = p.y + p.h / 2;
+
+    let closestX = constrain(IGstone.x, left, right);
+    let closestY = constrain(IGstone.y, top, bottom);
+    let d = dist(IGstone.x, IGstone.y, closestX, closestY);
+
+    if (d < IGstone.size / 3) {
+        return true;
+    }
+    return false;
+}
+
 function mousePressed() {
     if (gamestate === "menu") {
         if (mouseX > 200 && mouseX < 400 && mouseY > 175 && mouseY < 225) {
@@ -261,41 +313,29 @@ function mousePressed() {
 function mouseReleased() {
     if (IGstone.state === "aiming") {
         IGstone.velocity.x = (IGstone.tempx - mouseX) * 0.1;
-        if (IGstone.velocity.x > 10) {
-            IGstone.velocity.x = 10;
-        }
-        if (IGstone.velocity.x < -10) {
-            IGstone.velocity.x = -10;
-        }
         IGstone.velocity.y = (IGstone.tempy - mouseY) * 0.1;
-        if (IGstone.velocity.y > 10) {
-            IGstone.velocity.y = 10;
-        }
-        if (IGstone.velocity.y < -10) {
-            IGstone.velocity.y = -10;
+        let speed = dist(0, 0, IGstone.velocity.x, IGstone.velocity.y);
+        if (speed > 10) {
+            let ratio = 10 / speed;
+            IGstone.velocity.x = IGstone.velocity.x * ratio;
+            IGstone.velocity.y = IGstone.velocity.y * ratio;
         }
         IGstone.state = "flying";
     }
 }
 function reset() {
-    if (IGstone.x > width || IGstone.y > height || IGstone.x < 0) {
-        IGstone.x = 100;
-        IGstone.y = 100;
-        IGstone.velocity.x = 0;
-        IGstone.velocity.y = 0;
-        IGstone.state = "neutral";
+    IGstone.x = 100;
+    IGstone.y = 100;
+    IGstone.velocity.x = 0;
+    IGstone.velocity.y = 0;
+    IGstone.angle = 0;
+    IGstone.state = "neutral";
 
-        birds.bird1.hit = false
-        birds.bird2.hit = false
-    }
-
+    birds.bird1.hit = false
+    birds.bird2.hit = false
 }
 function wingame() {
     if (birds.bird1.hit === true && birds.bird2.hit === true) {
         gamestate = "done";
     }
-    if (gamestate === "done") {
-        drawButton(300, 200, 500, 100, "You killed both birds with one stone! You win!", 20);
-    }
-
 }
